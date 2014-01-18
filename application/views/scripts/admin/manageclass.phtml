@@ -1,0 +1,21 @@
+<html>
+<head>
+<title>Management System</title>
+</head>
+<body>
+<h3>welcome to electives class management system!</h3>
+<table border="1" cellspacing='0'>
+<tr bgcolor='gray'><td>课程号</td><td>课程名称</td><td>课程老师</td><td>课程学分</td><td>修改</td><td>删除</td></tr>
+<?php foreach ($this->classes as $classes) { ?>
+<tr>
+<td><?=$classes['id']?></td>
+<td><?=$classes['name']?></td>
+<td><?=$classes['teacher']?></td>
+<td><?=$classes['score']?></td>
+<td>修改</td>
+<td><a href="/admin/deleteclasses?classesid=<?=$classes['id']?>">删除</a></td>
+</tr>
+<?php }?>
+</table>
+</body>
+</html>
