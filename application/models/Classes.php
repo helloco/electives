@@ -27,4 +27,10 @@ class Classes extends Zend_Db_Table{
 		$where="id=$classesid";
 		return $res=$this->delete($where);
 	}
+	
+	public function getclass($classid){
+		$sql="select * from classes where id=$classid";
+		$db=$this->getAdapter();
+		return $db->query($sql)->fetchAll();
+	}
 }
