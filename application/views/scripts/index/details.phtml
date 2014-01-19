@@ -1,6 +1,13 @@
 <h1>comments</h1>
 <body>
+<form action="#" method="post">
 <table>
-
+<tr><td><h1><?=$this->classmessage['name']?></h1></td><td>教师：<?=$this->classmessage['teacher']?></td><td>课程任务号：<?=$this->classmessage['id']?></td><td>学分 <?=$this->classmessage['score']?></td></tr>
+<?php foreach ($this->comments as $comments) {?>
+<tr><td><h2><?=$comments['comment'] ?></h2></td><td><h4><?=$comments['time'] ?></h4></td><td><h7><a href="#"><?=$comments['userid'] ?></a></h7></td></tr>
+<?php } ?>
+<tr><td colspan=3><textarea rows=5 cols=60 name='comment'></textarea></td></tr>
+<tr><td colspan=3><input type="submit" value="add"></td></tr>
 </table>
+</form>
 </body>

@@ -20,9 +20,8 @@ class IndexController extends BaseController
     	$classesModel=new Classes();
     	$userModel=new User();
     	
-    	$class_message=$classesModel->getclass($classid);
-    	$this->view->class_message=$class_message;
-    	
+    	$classmessage=$classesModel->getclass($classid);
+    	$this->view->classmessage=$classmessage[0];
     	$comments=$commentsModel->getcomments($classid);
     	$this->view->comments=$comments;
     	$this->render('details');
