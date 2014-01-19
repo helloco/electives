@@ -8,9 +8,36 @@ class User extends Zend_Db_Table{
 		return $db->query($sql)->fetchAll();
 	}
 	
+// 	public function checkusername($username){
+// 		$db=$this->getAdapter();
+// 		$sql="select * from user where name=$username";
+// 		$res=$db->query($sql)->fetchAll();
+// 		echo "<pre>";
+// 		print_r($res);
+// 		echo "</pre>";
+// 		exit();
+// 	}
 	public function checkusername($username){
+		$sql="select * from user where id=$username";
 		$db=$this->getAdapter();
-		$sql="select id from user where name=$username";
 		return $db->query($sql)->fetchAll();
 	}
+	public function check($username){
+		$db=$this->getAdapter();
+		$where=$db->quoteInto("name=?", $username);
+		//$res=$this->fetchRow($where)->toArray();
+		$res=$this->fetchAll($where)->toArray();
+		return $res;
+	}
+	
+	public function adduser($username,$userpwd){
+		$data=array(
+		'name' => $username,
+		'pwd' => md5($userpwd)
+		);
+		return $this->insert($data);
+		
+	}
+	
 }
+
