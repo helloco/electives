@@ -25,11 +25,31 @@ class IndexController extends BaseController
     	$comments=$commentsModel->getcomments($classid);
     	$this->view->comments=$comments;
     	$this->render('details');
-//     	echo "<pre>";
-//     	print_r($comment);
-//     	echo "</pre>";
-//     	exit();
+    	
     }
+   
+    public function addcommentAction(){
+    	$classid=$this->getRequest()->getParam("classid",'');
+    	$comment=$this->getRequest()->getParam('comment','');
+    	$time="999999";
+    	session_start();
+    	$userid=$_SESSION['normal_user_message']['id'];
+    	$data=array(
+			'classid'=>$classid,
+			'userid'=>$userid,
+			'time'=>$time,
+			'comment'=>$comment
+		);
+    	$commentsModel=new Comments();
+    	$res=$commentsModel->addcomment($classid, $userid, $comment);
+    	if ($res) {
+    		$this->view->info="ÆÀÂÛ³É¹¦£¡";
+			$this->view->href="/index/showcommentui?classid=$classid";
+			$this->_forward("log","global");;
+    	}
+    }
+    
+    
 
 }
 

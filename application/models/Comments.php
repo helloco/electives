@@ -1,6 +1,7 @@
 <?php
 class Comments extends Zend_Db_Table{
 	protected $_name="comments";
+	protected $_primary = 'classid';
 	
 	//show comments details
 	public function getcomments($classid){
@@ -11,5 +12,18 @@ class Comments extends Zend_Db_Table{
 		
 		$db=$this->getAdapter();
 		return $db->query($sql)->fetchAll();
+	}
+	
+	
+	public function addcomment($classid,$userid,$comment){
+		$time=date("Y-m-d H:i:s");
+		$data=array(
+			'classid'=>$classid,
+			'userid'=>$userid,
+			'time'=>$time,
+			'comment'=>$comment
+		);
+		$this->insert($data);
+		return true;
 	}
 }
